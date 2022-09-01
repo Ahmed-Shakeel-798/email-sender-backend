@@ -14,13 +14,13 @@ app.post("/", async (req, res) => {
   try {
     const isSent = await emailSender(req.body);
     if (isSent) {
-      res.status(200).send("Email sent");
+      res.status(200).send({message: "Email sent"});
     } else {
-      res.status(500).send("Please try again");
+      res.status(500).send({message: "Please try again"});
     }
   } catch (error) {
     console.log(error.message);
-    res.status(500).send("Error: ", error.message);
+    res.status(500).send({message: error.message});
   }
 });
 
